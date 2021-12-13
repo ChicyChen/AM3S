@@ -31,12 +31,13 @@ class Loss(nn.Module):
 
         L_grad = nn.L1Loss()(grad_pred_x, grad_target_x) + nn.L1Loss()(grad_pred_y, grad_target_y)
 
-        SSIMFunc = SSIM()
-        pred_ssim_in = torch.cat((pred, pred, pred), 1)
-        target_ssim_in = torch.cat((target, target, target), 1)
-        L_ssim = (1 - SSIMFunc(pred_ssim_in, target_ssim_in))/2
-        self.ssim.append(L_ssim)
-        total_L = 0.1 * L_depth + L_grad + L_ssim
+        # SSIM Loss is not working
+        #SSIMFunc = SSIM()
+        #pred_ssim_in = torch.cat((pred, pred, pred), 1)
+        #target_ssim_in = torch.cat((target, target, target), 1)
+        #L_ssim = (1 - SSIMFunc(pred_ssim_in, target_ssim_in))/2
+        #self.ssim.append(L_ssim)
+        total_L = 0.1 * L_depth + L_grad #+ L_ssim
         return total_L
 
     def get_ssim(self):

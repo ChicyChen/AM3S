@@ -18,11 +18,12 @@ import cv2
 
 
 class MyDataset(Dataset):
-    # An object for representing the Dataset for Pytorch.
-    def __init__(self, image_fns, dim=256):
+    # An object for representing the Scannet Dataset for Pytorch.
+    def __init__(self, image_fns, height=640, width=480): # dim is set according to the paper's orig model, also due to memory constraints
         super().__init__()
         self.image_fns = image_fns
-        self.dim = (dim, dim)
+        self.width = width
+        self.height = height
 
     def __len__(self):
         return len(self.image_fns)
@@ -31,7 +32,7 @@ class MyDataset(Dataset):
         images = [] 
         for image_fn in self.image_fns[index]:
             image = cv2.imread(image_fn, cv2.IMREAD_GRAYSCALE)
-            image = cv2.resize(image, self.dim)
+            image = cv2.resize(image, (self.width, self.height))
             images.append(image)
 
         images = np.array(images)
