@@ -1,0 +1,6 @@
+torch
+pillow
+numpy
+imageio
+opencv-python
+zlib
