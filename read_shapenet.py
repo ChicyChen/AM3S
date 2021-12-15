@@ -156,8 +156,8 @@ scene_list_path = f'/z/syqian/ScanNet/scans/scene*'
 scan_scene_sets = glob(scene_list_path)
 
 
-save_dir_root = "/data/siyich/am3s"
-number_of_data = 100
+save_dir_root = "/data/siyich/am3s_rand"
+number_of_data = 400
 
 
 for ndx in range(number_of_data):
@@ -286,7 +286,7 @@ for ndx in range(number_of_data):
     cv2.imwrite(init_path, image_init_save * 255)
 
 
-    loop = tqdm(range(100))
+    loop = tqdm(range(1))
     for i in loop:
         optimizer.zero_grad()
         loss, _ = model()
